@@ -1,0 +1,361 @@
+/* =========================
+   REGISTER PAGE
+========================= */
+
+.register-section {
+  min-height: calc(100vh - 72px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 70px 20px;
+
+  background:
+    radial-gradient(
+      circle at 10% 15%,
+      rgba(255, 210, 220, 0.35),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 90% 85%,
+      rgba(255, 220, 228, 0.4),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #fff8f8,
+      #fff0f3
+    );
+
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* =========================
+   DECORATIVE CIRCLES
+========================= */
+
+.register-section::before,
+.register-section::after {
+  content: "";
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  background: rgba(255, 205, 218, 0.28);
+
+  pointer-events: none;
+}
+
+.register-section::before {
+  width: 260px;
+  height: 260px;
+
+  top: -90px;
+  left: -90px;
+}
+
+.register-section::after {
+  width: 300px;
+  height: 300px;
+
+  right: -120px;
+  bottom: -120px;
+}
+
+
+/* =========================
+   REGISTER CARD
+========================= */
+
+.register-card {
+  width: min(100%, 500px);
+
+  position: relative;
+  z-index: 1;
+
+  padding: 45px 42px;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  border: 1px solid #f3dce2;
+
+  border-radius: 28px;
+
+  box-shadow:
+    0 20px 60px rgba(107, 24, 45, 0.10);
+
+  text-align: center;
+}
+
+
+/* =========================
+   REGISTER ICON
+========================= */
+
+.register-icon {
+  width: 72px;
+  height: 72px;
+
+  margin: 0 auto 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #ffe4eb;
+
+  font-size: 34px;
+
+  box-shadow:
+    0 8px 25px rgba(233, 79, 112, 0.15);
+}
+
+
+/* =========================
+   HEADING
+========================= */
+
+.register-heading span {
+  display: block;
+
+  margin-bottom: 12px;
+
+  color: #cf3f5c;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 4px;
+}
+
+.register-heading h1 {
+  margin: 0;
+
+  color: #4b111e;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 42px;
+
+  line-height: 1.15;
+}
+
+.register-heading h1 em {
+  color: #e34261;
+
+  font-style: italic;
+
+  font-weight: 600;
+}
+
+.register-heading p {
+  margin: 16px auto 30px;
+
+  max-width: 380px;
+
+  color: #7b666b;
+
+  font-size: 15px;
+
+  line-height: 1.6;
+}
+
+
+/* =========================
+   REGISTER FORM
+========================= */
+
+.register-form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+
+  text-align: left;
+}
+
+
+/* =========================
+   FORM GROUP
+========================= */
+
+.register-group {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.register-group label {
+  color: #4b111e;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+.register-group input {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 14px 16px;
+
+  border: 1px solid #e9cfd6;
+
+  border-radius: 12px;
+
+  background: #fffafb;
+
+  color: #3f2b30;
+
+  font-size: 15px;
+
+  outline: none;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.register-group input::placeholder {
+  color: #b09a9f;
+}
+
+.register-group input:focus {
+  border-color: #e85a77;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 4px rgba(232, 90, 119, 0.10);
+}
+
+
+/* =========================
+   USER ID HELPER TEXT
+========================= */
+
+.register-group small {
+  color: #a0878d;
+
+  font-size: 12px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================
+   CREATE ACCOUNT BUTTON
+========================= */
+
+.register-button {
+  width: 100%;
+
+  margin-top: 8px;
+
+  padding: 15px 20px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  border: none;
+
+  border-radius: 14px;
+
+  background: linear-gradient(
+    135deg,
+    #ef5272,
+    #d93e5c
+  );
+
+  color: #ffffff;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 10px 25px rgba(217, 62, 92, 0.20);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.register-button span {
+  font-size: 19px;
+
+  transition:
+    transform 0.25s ease;
+}
+
+.register-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 14px 30px rgba(217, 62, 92, 0.28);
+}
+
+.register-button:hover span {
+  transform: translateX(5px);
+}
+
+.register-button:active {
+  transform: translateY(0);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+  .register-section {
+    padding: 40px 16px;
+  }
+
+  .register-card {
+    padding: 35px 24px;
+
+    border-radius: 22px;
+  }
+
+  .register-heading span {
+    letter-spacing: 3px;
+  }
+
+  .register-heading h1 {
+    font-size: 34px;
+  }
+
+  .register-heading p {
+    font-size: 14px;
+  }
+}

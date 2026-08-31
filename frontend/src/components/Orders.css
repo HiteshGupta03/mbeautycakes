@@ -1,0 +1,643 @@
+/* =========================
+   Orders Page
+========================= */
+
+.orders-page {
+  min-height: 100vh;
+  padding: 50px 7%;
+  background: #fff7f8;
+}
+
+.orders-page h1 {
+  font-size: 38px;
+  margin-bottom: 35px;
+  color: #222;
+  text-align: center;
+}
+
+
+/* =========================
+   Orders Container
+========================= */
+
+.orders-container {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+
+/* =========================
+   Order Card
+========================= */
+
+.order-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 28px 32px;
+  border: 1px solid #f3dce1;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.order-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+
+/* =========================
+   Order Header
+========================= */
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+
+  border-bottom: 1px solid #eeeeee;
+}
+
+.order-header h2 {
+  margin: 0;
+  font-size: 25px;
+  color: #222;
+}
+
+
+/* =========================
+   Order Status
+========================= */
+
+.order-status {
+  padding: 7px 15px;
+  border-radius: 20px;
+
+  background: #fff3cd;
+  color: #856404;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+/* =========================
+   Order Information
+========================= */
+
+.order-info {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 12px 30px;
+
+  margin-bottom: 22px;
+}
+
+.order-info p {
+  margin: 0;
+
+  color: #555;
+
+  font-size: 16px;
+}
+
+.order-info strong {
+  color: #222;
+}
+
+
+/* =========================
+   Order Total
+========================= */
+
+.order-total {
+  font-size: 20px;
+  font-weight: 700;
+
+  color: #e94f70;
+
+  margin-top: 10px;
+}
+
+
+/* =========================
+   View Details Button
+========================= */
+
+.view-details-button {
+  border: none;
+
+  background: #f05a78;
+  color: white;
+
+  padding: 11px 20px;
+
+  border-radius: 10px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.view-details-button:hover {
+  background: #d94362;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================
+   Order Details
+========================= */
+
+.order-details {
+  margin-top: 25px;
+
+  padding: 25px;
+
+  background: #fff9fa;
+
+  border-radius: 15px;
+
+  border: 1px solid #f2dce1;
+}
+
+.order-details h2 {
+  margin-top: 0;
+
+  margin-bottom: 20px;
+
+  color: #222;
+}
+
+
+/* =========================
+   Customer Details
+========================= */
+
+.customer-details {
+  margin-bottom: 25px;
+
+  padding-bottom: 20px;
+
+  border-bottom: 1px solid #eeeeee;
+}
+
+.customer-details p {
+  margin: 7px 0;
+
+  color: #444;
+}
+
+
+/* =========================
+   Cakes Ordered
+========================= */
+
+.cakes-ordered {
+  margin-top: 20px;
+}
+
+.cakes-ordered h3 {
+  margin-bottom: 15px;
+
+  font-size: 20px;
+
+  color: #333;
+}
+
+
+/* =========================
+   Cake Item
+========================= */
+
+.order-item {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 13px 0;
+
+  border-bottom: 1px solid #eeeeee;
+}
+
+.order-item:last-child {
+  border-bottom: none;
+}
+
+.order-item-name {
+  font-weight: 600;
+
+  color: #333;
+}
+
+.order-item-price {
+  color: #555;
+}
+
+
+/* =========================
+   Details Total
+========================= */
+
+.details-total {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-top: 20px;
+
+  padding-top: 18px;
+
+  border-top: 2px solid #eeeeee;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.details-total span:last-child {
+  color: #e94f70;
+}
+
+
+/* =========================
+   Close Button
+========================= */
+
+.close-details-button {
+  margin-top: 20px;
+
+  padding: 10px 20px;
+
+  border: 1px solid #ddd;
+
+  background: white;
+
+  border-radius: 9px;
+
+  cursor: pointer;
+
+  font-weight: 600;
+}
+
+.close-details-button:hover {
+  background: #f5f5f5;
+}
+
+
+/* =========================
+   No Orders
+========================= */
+
+.no-orders {
+  text-align: center;
+
+  padding: 60px 20px;
+
+  color: #777;
+
+  font-size: 18px;
+}
+
+
+/* =========================
+   Loading
+========================= */
+
+.orders-loading {
+  text-align: center;
+
+  padding: 60px;
+
+  font-size: 18px;
+
+  color: #777;
+}
+
+
+/* =========================
+   Error
+========================= */
+
+.orders-error {
+  text-align: center;
+
+  padding: 30px;
+
+  color: #d33;
+
+  background: #fff0f0;
+
+  border-radius: 12px;
+}
+
+
+/* =========================
+   Mobile Responsive
+========================= */
+
+@media (max-width: 768px) {
+
+  .orders-page {
+    padding: 35px 20px;
+  }
+
+  .orders-page h1 {
+    font-size: 30px;
+  }
+
+  .order-card {
+    padding: 22px;
+  }
+
+  .order-header {
+    align-items: flex-start;
+
+    gap: 15px;
+  }
+
+  .order-header h2 {
+    font-size: 21px;
+  }
+
+  .order-info {
+    grid-template-columns: 1fr;
+  }
+
+  .order-item {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 5px;
+  }
+
+}
+
+.orders-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.refresh-orders-button {
+  background: #f65373;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.refresh-orders-button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* =========================
+   Order Tracking
+========================= */
+
+.order-tracking {
+  margin: 28px 0;
+  padding: 25px;
+
+  background: #ffffff;
+
+  border: 1px solid #f2dce1;
+  border-radius: 16px;
+}
+
+.order-tracking h3 {
+  margin: 0 0 25px;
+
+  font-size: 21px;
+  color: #4b111e;
+}
+
+
+/* =========================
+   Tracking Steps
+========================= */
+
+.tracking-steps {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 10px;
+}
+
+.tracking-step {
+  flex: 1;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+
+/* Connector */
+
+.tracking-step:not(:last-child)::after {
+  content: "";
+
+  position: absolute;
+
+  top: 19px;
+  left: calc(50% + 20px);
+  right: calc(-50% + 20px);
+
+  height: 3px;
+
+  background: #eadde1;
+
+  z-index: 0;
+}
+
+.tracking-step.completed:not(:last-child)::after {
+  background: #e94f70;
+}
+
+
+/* Marker */
+
+.tracking-marker {
+  position: relative;
+  z-index: 1;
+
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #f6edf0;
+  color: #9b8087;
+
+  border: 3px solid #ffffff;
+
+  box-shadow: 0 3px 12px rgba(100, 30, 50, 0.08);
+
+  font-size: 14px;
+  font-weight: 700;
+
+  transition: all 0.3s ease;
+}
+
+
+/* Current */
+
+.tracking-step.current .tracking-marker {
+  background: #e94f70;
+  color: #ffffff;
+
+  box-shadow:
+    0 0 0 5px rgba(233, 79, 112, 0.12),
+    0 6px 16px rgba(233, 79, 112, 0.25);
+}
+
+
+/* Completed */
+
+.tracking-step.completed .tracking-marker {
+  background: #e94f70;
+  color: #ffffff;
+}
+
+
+/* Content */
+
+.tracking-content {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 12px;
+
+  gap: 4px;
+}
+
+.tracking-content strong {
+  color: #4b111e;
+
+  font-size: 14px;
+}
+
+.tracking-content span {
+  color: #96777f;
+
+  font-size: 12px;
+}
+
+
+/* =========================
+   Cancelled Order
+========================= */
+
+.cancelled-order {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 18px;
+
+  border-radius: 12px;
+
+  background: #fff0f0;
+  border: 1px solid #f2caca;
+
+  color: #b4232f;
+}
+
+.cancelled-order > span {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #d94362;
+  color: white;
+
+  font-weight: 700;
+}
+
+.cancelled-order strong {
+  display: block;
+
+  margin-bottom: 3px;
+}
+
+.cancelled-order p {
+  margin: 0;
+
+  font-size: 13px;
+}
+
+
+/* =========================
+   Tracking Mobile
+========================= */
+
+@media (max-width: 768px) {
+
+  .tracking-steps {
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 0;
+  }
+
+  .tracking-step {
+    width: 100%;
+
+    flex-direction: row;
+
+    align-items: center;
+
+    text-align: left;
+
+    gap: 14px;
+
+    padding-bottom: 22px;
+  }
+
+  .tracking-step:not(:last-child)::after {
+    top: 40px;
+    bottom: 0;
+    left: 18px;
+    right: auto;
+
+    width: 3px;
+    height: auto;
+  }
+
+  .tracking-content {
+    margin-top: 0;
+  }
+}

@@ -1,0 +1,611 @@
+/* =====================================================
+   BEST SELLER SECTION
+===================================================== */
+
+.best-seller-section {
+  position: relative;
+
+  width: 100%;
+
+  padding: 105px 6% 115px;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 10% 20%,
+      rgba(255, 220, 228, 0.55),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      rgba(255, 224, 232, 0.45),
+      transparent 28%
+    ),
+    linear-gradient(
+      180deg,
+      #fff8f9 0%,
+      #fff2f5 100%
+    );
+}
+
+
+/* =====================================================
+   HEADING
+===================================================== */
+
+.best-seller-heading {
+  max-width: 820px;
+
+  margin: 0 auto 55px;
+
+  text-align: center;
+}
+
+.best-seller-label {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 15px;
+
+  color: #b14b5d;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  letter-spacing: 3px;
+
+  text-transform: uppercase;
+}
+
+.best-seller-label span {
+  color: #e79baa;
+
+  font-size: 15px;
+}
+
+.best-seller-heading h2 {
+  margin: 0;
+
+  color: #43121a;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: clamp(
+    42px,
+    5vw,
+    62px
+  );
+
+  line-height: 1.08;
+
+  letter-spacing: -1px;
+}
+
+.best-seller-heading h2 em {
+  color: #d14d67;
+
+  font-style: italic;
+
+  font-weight: 600;
+}
+
+.best-seller-heading p {
+  max-width: 650px;
+
+  margin: 18px auto 0;
+
+  color: #7d666c;
+
+  font-size: 16px;
+
+  line-height: 1.7;
+}
+
+
+/* =====================================================
+   MAIN CARD
+===================================================== */
+
+.best-seller-card {
+  position: relative;
+
+  width: 100%;
+
+  max-width: 1220px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  overflow: hidden;
+
+  border:
+    1px solid #f0d6dc;
+
+  border-radius: 32px;
+
+  background:
+    rgba(255, 255, 255, 0.96);
+
+  box-shadow:
+    0 25px 70px rgba(86, 25, 38, 0.10);
+}
+
+
+/* =====================================================
+   IMAGE AREA
+===================================================== */
+
+.best-seller-image-area {
+  position: relative;
+
+  min-height: 560px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 50px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffe6ec,
+      #fff6f8
+    );
+}
+
+.best-seller-glow {
+  position: absolute;
+
+  width: 430px;
+  height: 430px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(246, 164, 181, 0.28);
+
+  filter: blur(4px);
+}
+
+.best-seller-image-ring {
+  position: relative;
+
+  width: min(430px, 85%);
+
+  aspect-ratio: 1 / 1;
+
+  padding: 15px;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 22px 60px rgba(87, 25, 38, 0.15);
+
+  z-index: 2;
+}
+
+.best-seller-image-ring img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+}
+
+
+/* =====================================================
+   BADGE
+===================================================== */
+
+.best-seller-badge {
+  position: absolute;
+
+  left: 12%;
+
+  bottom: 12%;
+
+  z-index: 4;
+
+  padding: 11px 17px;
+
+  border:
+    1px solid #f0d7dd;
+
+  border-radius: 999px;
+
+  background:
+    rgba(255, 255, 255, 0.96);
+
+  color: #a1394c;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  box-shadow:
+    0 10px 28px rgba(70, 20, 30, 0.12);
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.best-seller-content {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  padding:
+    65px 65px 60px;
+}
+
+.best-seller-eyebrow {
+  display: inline-block;
+
+  margin-bottom: 16px;
+
+  color: #b04458;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+}
+
+.best-seller-content h3 {
+  margin: 0 0 18px;
+
+  color: #43121a;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 40px;
+
+  line-height: 1.15;
+}
+
+.best-seller-content > p {
+  max-width: 510px;
+
+  margin: 0;
+
+  color: #78656a;
+
+  font-size: 15px;
+
+  line-height: 1.75;
+}
+
+
+/* =====================================================
+   HIGHLIGHTS
+===================================================== */
+
+.best-seller-highlights {
+  margin-top: 30px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 15px;
+}
+
+.best-seller-highlights > div {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.best-seller-highlights > div > span {
+  width: 39px;
+  height: 39px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #fff0f3;
+
+  font-size: 17px;
+}
+
+.best-seller-highlights strong {
+  display: block;
+
+  color: #4d2b32;
+
+  font-size: 13px;
+}
+
+.best-seller-highlights small {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #927c82;
+
+  font-size: 10px;
+}
+
+
+/* =====================================================
+   BOTTOM
+===================================================== */
+
+.best-seller-bottom {
+  margin-top: 35px;
+
+  padding-top: 25px;
+
+  border-top:
+    1px solid #f0e1e5;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.best-seller-price {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.best-seller-price small {
+  color: #947b81;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+.best-seller-price strong {
+  color: #ba3f55;
+
+  font-size: 29px;
+}
+
+.best-seller-button {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 9px;
+
+  padding:
+    13px 24px;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ef5270,
+      #d83f5c
+    );
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 800;
+
+  text-decoration: none;
+
+  box-shadow:
+    0 10px 25px rgba(216, 63, 92, 0.22);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.best-seller-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 14px 30px rgba(216, 63, 92, 0.30);
+}
+
+.best-seller-button span {
+  transition:
+    transform 0.2s ease;
+}
+
+.best-seller-button:hover span {
+  transform: translateX(4px);
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 900px) {
+
+  .best-seller-section {
+    padding:
+      85px 5%
+      95px;
+  }
+
+  .best-seller-card {
+    grid-template-columns: 1fr;
+  }
+
+  .best-seller-image-area {
+    min-height: 460px;
+  }
+
+  .best-seller-content {
+    padding:
+      45px 45px 50px;
+  }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 650px) {
+
+  .best-seller-section {
+    padding:
+      70px 18px
+      80px;
+  }
+
+  .best-seller-heading {
+    margin-bottom: 38px;
+  }
+
+  .best-seller-label {
+    font-size: 10px;
+
+    letter-spacing: 2.2px;
+  }
+
+  .best-seller-label span {
+    font-size: 13px;
+  }
+
+  .best-seller-heading h2 {
+    font-size: 37px;
+  }
+
+  .best-seller-heading p {
+    font-size: 14px;
+  }
+
+  .best-seller-image-area {
+    min-height: 330px;
+
+    padding: 25px;
+  }
+
+  .best-seller-glow {
+    width: 280px;
+    height: 280px;
+  }
+
+  .best-seller-image-ring {
+    width: 255px;
+  }
+
+  .best-seller-badge {
+    left: 50%;
+
+    bottom: 20px;
+
+    transform:
+      translateX(-50%);
+
+    white-space: nowrap;
+  }
+
+  .best-seller-content {
+    padding:
+      35px 25px
+      38px;
+  }
+
+  .best-seller-content h3 {
+    font-size: 29px;
+  }
+
+  .best-seller-content > p {
+    font-size: 14px;
+  }
+
+  .best-seller-bottom {
+    align-items: stretch;
+
+    flex-direction: column;
+  }
+
+  .best-seller-button {
+    width: 100%;
+  }
+}
+
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media (max-width: 400px) {
+
+  .best-seller-section {
+    padding:
+      60px 15px
+      70px;
+  }
+
+  .best-seller-heading h2 {
+    font-size: 34px;
+  }
+
+  .best-seller-image-area {
+    min-height: 300px;
+  }
+
+  .best-seller-image-ring {
+    width: 220px;
+  }
+
+  .best-seller-content h3 {
+    font-size: 27px;
+  }
+}
