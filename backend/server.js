@@ -134,40 +134,6 @@ app.get("/api/cakes", async (req, res) => {
 });
 
 // =========================
-// GET all orders
-// =========================
-
-app.get("/api/orders", async (req, res) => {
-  try {
-    const { user_id } = req.query;
-
-    if (!user_id) {
-      return res.status(400).json({
-        message: "User ID is required",
-      });
-    }
-
-    const [orders] = await db.query(
-      `SELECT *
-       FROM orders
-       WHERE user_id = ?
-       ORDER BY id DESC`,
-      [user_id]
-    );
-
-    res.json(orders);
-
-  } catch (error) {
-    console.error("Get orders error:", error);
-
-    res.status(500).json({
-      message: "Failed to fetch orders",
-      error: error.message,
-    });
-  }
-});
-
-// =========================
 // GET single order
 // =========================
 // =========================
@@ -244,12 +210,13 @@ app.get(
       });
     }
 
-    // Get order items
+    // Get order items with weight
     const [items] = await db.query(
       `SELECT
          id,
          order_id,
          cake_name,
+         weight,
          price,
          quantity
        FROM order_items
@@ -278,7 +245,11 @@ app.get(
 // GET ADMIN SINGLE ORDER
 // ============================
 
-app.get("/api/admin/orders/:id", async (req, res) => {
+app.get(
+  "/api/admin/orders/:id",
+  authenticateToken,
+  requireAdmin,
+  async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -307,13 +278,14 @@ app.get("/api/admin/orders/:id", async (req, res) => {
       });
     }
 
-    // Get cakes belonging to this order
+    // Get cakes belonging to this order with weight
     const [items] = await db.query(
       `
       SELECT
         id,
         order_id,
         cake_name,
+        weight,
         price,
         quantity
       FROM order_items
@@ -773,22 +745,25 @@ app.post("/api/register", async (req, res) => {
 
 
     // =========================
-    // Check existing email
+    // Check existing user
     // =========================
 
     const [existingUsers] =
       await connection.execute(
-        "SELECT id FROM users WHERE user_id = ?",
-        [userId]
+        "SELECT id, user_id, email FROM users WHERE user_id = ? OR email = ?",
+        [userId, email]
       );
 
-
     if (existingUsers.length > 0) {
-
+      const match = existingUsers[0];
+      if (match.user_id === userId) {
+        return res.status(409).json({
+          message: "User ID already registered.",
+        });
+      }
       return res.status(409).json({
-        message: "User ID already registered.",
+        message: "Email already registered.",
       });
-
     }
 
 
@@ -997,14 +972,16 @@ res.status(200).json({
 });
 
 
+  } catch (error) {
+    console.error("Login error:", error);
+    res.status(500).json({
+      message: "Login failed. Please try again.",
+      error: error.message,
+    });
   } finally {
-
     if (connection) {
-
       connection.release();
-
     }
-
   }
 
 });

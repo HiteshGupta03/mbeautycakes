@@ -25,18 +25,14 @@ function OurMenu() {
   ] = useSearchParams();
 
 
-  const urlCategory =
+  const selectedCategory =
     searchParams.get("category") || "All";
-
 
   /* =========================================
      STATES
   ========================================= */
 
   const [cakes, setCakes] = useState([]);
-
-  const [selectedCategory, setSelectedCategory] =
-    useState(urlCategory);
 
   const [selectedWeights, setSelectedWeights] =
     useState({});
@@ -108,17 +104,6 @@ function OurMenu() {
   }, []);
 
 
-  /* =========================================
-     SYNC URL CATEGORY WITH SELECTED CATEGORY
-  ========================================= */
-
-  useEffect(() => {
-
-    setSelectedCategory(
-      urlCategory
-    );
-
-  }, [urlCategory]);
 
 
   /* =========================================
@@ -262,10 +247,6 @@ function OurMenu() {
   const handleCategoryChange = (
     category
   ) => {
-
-    setSelectedCategory(
-      category
-    );
 
 
     /*

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Register.css";
 
 function Register() {
@@ -6,6 +7,8 @@ function Register() {
   const [userId, setUserId] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -36,13 +39,14 @@ function Register() {
         return;
       }
 
-      alert("✅ Account created successfully!");
+      alert("✅ Account created successfully! Please login.");
 
-      // Clear form
+      // Clear form & navigate to login
       setName("");
       setUserId("");
       setEmail("");
       setPassword("");
+      navigate("/login");
 
     } catch (error) {
       console.error("Register error:", error);

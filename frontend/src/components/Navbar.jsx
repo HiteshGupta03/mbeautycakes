@@ -8,6 +8,16 @@ import {
 import { useCart } from "./CartContext";
 import "./Navbar.css";
 
+function getStoredUser() {
+  const storedUser = localStorage.getItem("user");
+  if (!storedUser) return null;
+  try {
+    return JSON.parse(storedUser);
+  } catch {
+    return null;
+  }
+}
+
 function Navbar() {
   const { cart } = useCart();
 
@@ -20,12 +30,10 @@ function Navbar() {
   const [profileOpen, setProfileOpen] =
     useState(false);
 
-  const [currentUser, setCurrentUser] =
-    useState(null);
-
   const location = useLocation();
   const navigate = useNavigate();
 
+  const currentUser = getStoredUser();
 
   /* =========================================
      CART COUNT
@@ -36,34 +44,6 @@ function Navbar() {
       total + Number(item.quantity || 0),
     0
   );
-
-
-  /* =========================================
-     LOAD CURRENT USER
-  ========================================= */
-
-  useEffect(() => {
-    const storedUser =
-      localStorage.getItem("user");
-
-    if (!storedUser) {
-      setCurrentUser(null);
-      return;
-    }
-
-    try {
-      setCurrentUser(
-        JSON.parse(storedUser)
-      );
-    } catch (error) {
-      console.error(
-        "Failed to load user:",
-        error
-      );
-
-      setCurrentUser(null);
-    }
-  }, [location.pathname]);
 
 
   /* =========================================
@@ -333,7 +313,6 @@ function Navbar() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
 
-    setCurrentUser(null);
     setProfileOpen(false);
     setMenuOpen(false);
 
@@ -479,34 +458,52 @@ function Navbar() {
           </NavLink>
 
 
-          {/* LOGIN */}
+          {/* ADMIN LINK */}
 
-          <NavLink
-            to="/login"
-            onClick={closeProfile}
-            className={({ isActive }) =>
-              isActive
-                ? "nav-link active"
-                : "nav-link"
-            }
-          >
-            Login
-          </NavLink>
+          {currentUser?.role === "admin" && (
+            <NavLink
+              to="/admin/orders"
+              onClick={closeProfile}
+              className={({ isActive }) =>
+                isActive
+                  ? "nav-link active"
+                  : "nav-link"
+              }
+            >
+              Admin
+            </NavLink>
+          )}
 
 
-          {/* REGISTER */}
+          {/* LOGIN & REGISTER (Logged out only) */}
 
-          <NavLink
-            to="/register"
-            onClick={closeProfile}
-            className={({ isActive }) =>
-              isActive
-                ? "nav-link active"
-                : "nav-link"
-            }
-          >
-            Register
-          </NavLink>
+          {!currentUser && (
+            <>
+              <NavLink
+                to="/login"
+                onClick={closeProfile}
+                className={({ isActive }) =>
+                  isActive
+                    ? "nav-link active"
+                    : "nav-link"
+                }
+              >
+                Login
+              </NavLink>
+
+              <NavLink
+                to="/register"
+                onClick={closeProfile}
+                className={({ isActive }) =>
+                  isActive
+                    ? "nav-link active"
+                    : "nav-link"
+                }
+              >
+                Register
+              </NavLink>
+            </>
+          )}
 
 
           {/* CART */}
@@ -634,6 +631,22 @@ function Navbar() {
                   <span>📦</span>
                   My Orders
                 </NavLink>
+
+
+                {/* ADMIN PANEL */}
+
+                {currentUser?.role === "admin" && (
+                  <NavLink
+                    to="/admin/orders"
+                    className="profile-menu-item"
+                    onClick={
+                      closeProfile
+                    }
+                  >
+                    <span>⚡</span>
+                    Admin Panel
+                  </NavLink>
+                )}
 
 
                 {/* LOGOUT */}
@@ -809,6 +822,23 @@ function Navbar() {
           </NavLink>
 
 
+          {/* ADMIN PANEL */}
+
+          {currentUser?.role === "admin" && (
+            <NavLink
+              to="/admin/orders"
+              className="profile-menu-item"
+              onClick={() => {
+                closeProfile();
+                closeMenu();
+              }}
+            >
+              <span>⚡</span>
+              Admin Panel
+            </NavLink>
+          )}
+
+
           {/* LOGOUT */}
 
           <button
@@ -927,34 +957,52 @@ function Navbar() {
         </NavLink>
 
 
-        {/* LOGIN */}
+        {/* ADMIN */}
 
-        <NavLink
-          to="/login"
-          onClick={closeMenu}
-          className={({ isActive }) =>
-            isActive
-              ? "mobile-nav-link active"
-              : "mobile-nav-link"
-          }
-        >
-          Login
-        </NavLink>
+        {currentUser?.role === "admin" && (
+          <NavLink
+            to="/admin/orders"
+            onClick={closeMenu}
+            className={({ isActive }) =>
+              isActive
+                ? "mobile-nav-link active"
+                : "mobile-nav-link"
+            }
+          >
+            Admin Panel
+          </NavLink>
+        )}
 
 
-        {/* REGISTER */}
+        {/* LOGIN & REGISTER (Logged out only) */}
 
-        <NavLink
-          to="/register"
-          onClick={closeMenu}
-          className={({ isActive }) =>
-            isActive
-              ? "mobile-nav-link active"
-              : "mobile-nav-link"
-          }
-        >
-          Register
-        </NavLink>
+        {!currentUser && (
+          <>
+            <NavLink
+              to="/login"
+              onClick={closeMenu}
+              className={({ isActive }) =>
+                isActive
+                  ? "mobile-nav-link active"
+                  : "mobile-nav-link"
+              }
+            >
+              Login
+            </NavLink>
+
+            <NavLink
+              to="/register"
+              onClick={closeMenu}
+              className={({ isActive }) =>
+                isActive
+                  ? "mobile-nav-link active"
+                  : "mobile-nav-link"
+              }
+            >
+              Register
+            </NavLink>
+          </>
+        )}
 
 
         {/* CART */}

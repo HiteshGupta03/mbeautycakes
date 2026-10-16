@@ -1,10 +1,28 @@
 import { useEffect, useState } from "react";
 import "./Orders.css";
 
+function getInitialAuth() {
+  const storedUser = localStorage.getItem("user");
+  if (!storedUser) {
+    return { user: null, error: "Please login to view your orders." };
+  }
+
+  try {
+    const user = JSON.parse(storedUser);
+    if (!user?.id) {
+      return { user: null, error: "Invalid user information." };
+    }
+    return { user, error: "" };
+  } catch {
+    return { user: null, error: "Invalid user information." };
+  }
+}
+
 function Orders() {
+  const [auth] = useState(getInitialAuth);
   const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(() => !auth.error);
+  const [error, setError] = useState(() => auth.error);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [detailsLoading, setDetailsLoading] = useState(false);
 
@@ -13,46 +31,34 @@ function Orders() {
   // =========================
 
   useEffect(() => {
-  const storedUser = localStorage.getItem("user");
+    if (!auth.user) {
+      return;
+    }
 
-  if (!storedUser) {
-    setError("Please login to view your orders.");
-    setLoading(false);
-    return;
-  }
+    const token = localStorage.getItem("token");
 
-  const user = JSON.parse(storedUser);
-
-  if (!user.id) {
-    setError("Invalid user information.");
-    setLoading(false);
-    return;
-  }
-
-  const token = localStorage.getItem("token");
-
-fetch("/api/orders/my-orders", {
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-})
-  .then((response) => {
-      if (!response.ok) {
-        throw new Error("Failed to fetch orders");
-      }
-
-      return response.json();
+    fetch("/api/orders/my-orders", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     })
-    .then((data) => {
-      setOrders(data);
-      setLoading(false);
-    })
-    .catch((error) => {
-      console.error("Orders error:", error);
-      setError("Unable to load orders.");
-      setLoading(false);
-    });
-}, []);
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch orders");
+        }
+
+        return response.json();
+      })
+      .then((data) => {
+        setOrders(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Orders error:", err);
+        setError("Unable to load orders.");
+        setLoading(false);
+      });
+  }, [auth.user]);
 
   // =========================
   // Get single order details
@@ -388,6 +394,7 @@ const response = await fetch(
 
                 <span className="order-item-name">
                   {item.cake_name}
+                  {item.weight ? ` (${item.weight})` : ""}
                 </span>
 
                 <span className="order-item-price">

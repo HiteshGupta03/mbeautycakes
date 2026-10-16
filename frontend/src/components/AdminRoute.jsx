@@ -1,7 +1,15 @@
 import { Navigate } from "react-router-dom";
 
+function getStoredUser() {
+  try {
+    return JSON.parse(localStorage.getItem("user"));
+  } catch {
+    return null;
+  }
+}
+
 function AdminRoute({ children }) {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = getStoredUser();
 
   // Not logged in
   if (!user) {

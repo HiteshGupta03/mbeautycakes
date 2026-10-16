@@ -30,8 +30,6 @@ function AdminOrders() {
   // ============================
   const fetchOrders = async () => {
     try {
-      setLoading(true);
-
       const token = localStorage.getItem("token");
 
       const response = await fetch(
@@ -58,8 +56,53 @@ function AdminOrders() {
     }
   };
 
+  const handleRefresh = async () => {
+    setLoading(true);
+    await fetchOrders();
+  };
+
   useEffect(() => {
-    fetchOrders();
+    let ignore = false;
+
+    const load = async () => {
+      try {
+        const token = localStorage.getItem("token");
+
+        const response = await fetch(
+          "/api/admin/orders",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch orders");
+        }
+
+        const data = await response.json();
+
+        if (!ignore) {
+          setOrders(data);
+        }
+      } catch (error) {
+        console.error("Admin orders error:", error);
+        if (!ignore) {
+          alert("Unable to load orders.");
+        }
+      } finally {
+        if (!ignore) {
+          setLoading(false);
+        }
+      }
+    };
+
+    load();
+
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   // ============================
@@ -198,7 +241,7 @@ function AdminOrders() {
 
         <button
           className="admin-refresh-button"
-          onClick={fetchOrders}
+          onClick={handleRefresh}
         >
           🔄 Refresh
         </button>
@@ -595,6 +638,7 @@ function AdminOrders() {
 
                 <span className="admin-order-item-name">
                   {item.cake_name}
+                  {item.weight ? ` (${item.weight})` : ""}
                 </span>
 
                 <span className="admin-order-item-price">

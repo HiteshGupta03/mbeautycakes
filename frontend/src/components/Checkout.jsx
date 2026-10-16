@@ -5,11 +5,24 @@ import { Link } from "react-router-dom";
 function Checkout() {
   const { cart, clearCart } = useCart();
 
-  const [formData, setFormData] = useState({
-    name: "",
-    mobile: "",
-    address: "",
-    pincode: "",
+  const token = localStorage.getItem("token");
+  const storedUser = localStorage.getItem("user");
+  const isLoggedIn = !!(token && storedUser);
+
+  const [formData, setFormData] = useState(() => {
+    let name = "";
+    try {
+      const u = JSON.parse(localStorage.getItem("user") || "{}");
+      if (u?.name) name = u.name;
+    } catch {
+      // ignore
+    }
+    return {
+      name,
+      mobile: "",
+      address: "",
+      pincode: "",
+    };
   });
 
   const [orderPlaced, setOrderPlaced] = useState(false);
@@ -132,6 +145,14 @@ function Checkout() {
 
 
       if (!response.ok) {
+        if (response.status === 401 || response.status === 403) {
+          alert("Your session has expired. Please login again to place your order.");
+          localStorage.removeItem("token");
+          localStorage.removeItem("user");
+          window.location.href = "/login";
+          return;
+        }
+
         throw new Error(
           data.error ||
           data.message ||
@@ -254,6 +275,39 @@ function Checkout() {
   /* =========================================
      CHECKOUT PAGE
   ========================================= */
+
+  if (!isLoggedIn) {
+    return (
+      <section className="checkout-section">
+        <div className="order-success" style={{ textAlign: "center" }}>
+          <h1>🔐 Login Required</h1>
+          <p>Please log in or create an account to place your cake order.</p>
+          <div style={{ display: "flex", gap: "15px", justifyContent: "center", marginTop: "24px" }}>
+            <Link to="/login" className="continue-shopping-button">
+              Login to Continue
+            </Link>
+            <Link to="/register" className="continue-shopping-button" style={{ background: "#4caf50" }}>
+              Create Account
+            </Link>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (cart.length === 0) {
+    return (
+      <section className="checkout-section">
+        <div className="order-success" style={{ textAlign: "center" }}>
+          <h1>🛒 Your Cart is Empty</h1>
+          <p>Please select some delicious cakes from our menu before proceeding to checkout.</p>
+          <Link to="/cakes" className="continue-shopping-button" style={{ marginTop: "24px" }}>
+            🍰 Explore Cakes
+          </Link>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="checkout-section">
