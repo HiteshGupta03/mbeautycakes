@@ -6,6 +6,17 @@ const jwt = require("jsonwebtoken");
 
 require("dotenv").config();
 
+const jwtSecret = process.env.JWT_SECRET;
+
+if (
+  !jwtSecret ||
+  jwtSecret === "your_jwt_secret_key_here" ||
+  jwtSecret.length < 32
+) {
+  throw new Error(
+    "JWT_SECRET must be a unique, securely generated value of at least 32 characters."
+  );
+}
 
 const app = express();
 
@@ -38,7 +49,7 @@ const authenticateToken = (req, res, next) => {
 
     const decoded = jwt.verify(
       token,
-      process.env.JWT_SECRET
+      jwtSecret
     );
 
     req.user = decoded;
@@ -944,7 +955,7 @@ app.post("/api/login", async (req, res) => {
     id: user.id,
     role: user.db_role,
   },
-  process.env.JWT_SECRET,
+  jwtSecret,
   {
     expiresIn: "1h",
   }
